@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Art of VuTien</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="intro">
+  <div class="intro-content">
+    <img src="https://scontent.fhph1-3.fna.fbcdn.net/v/t39.30808-6/457472370_122172177008100338_7642633868536334426_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHk5ztvuY9AKfQir-eoAwd4K4ZKJ0K_sBcrhkonQr-wF2EMeEJnG8GzxH2ZGs7mFiH2VswwNNcn1RnmONxrI3zB&_nc_ohc=2sdi4fVAPKAQ7kNvwETTkRy&_nc_oc=AdnQaYSnM5nybLhzSyT_7Gswlmo2mADOvFHp92J4bXyacnL-GkebWfhwHlzAxRyQA-E&_nc_zt=23&_nc_ht=scontent.fhph1-3.fna&_nc_gid=e3MUEVFue20xibs7KQkiqA&oh=00_AfpIM0TLigF07vIonRjX7bA8eHCkWvHxNZpXu1xZ-zrPfw&oe=69681DF1" alt="Art of VuTien Logo" class="intro-logo">
+    <h1>Art of VuTien</h1>
+    <p>Sẵn sàng trở thành thành viên của gia đình VuTien Art chưa nào!</p>
+  </div>
+</div>
+
+
+<div id="app">
+
+  <!-- HOME -->
+  <section id="home" class="page active">
+    <img src="https://scontent.fhph1-3.fna.fbcdn.net/v/t39.30808-6/457472370_122172177008100338_7642633868536334426_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHk5ztvuY9AKfQir-eoAwd4K4ZKJ0K_sBcrhkonQr-wF2EMeEJnG8GzxH2ZGs7mFiH2VswwNNcn1RnmONxrI3zB&_nc_ohc=2sdi4fVAPKAQ7kNvwETTkRy&_nc_oc=AdnQaYSnM5nybLhzSyT_7Gswlmo2mADOvFHp92J4bXyacnL-GkebWfhwHlzAxRyQA-E&_nc_zt=23&_nc_ht=scontent.fhph1-3.fna&_nc_gid=e3MUEVFue20xibs7KQkiqA&oh=00_AfpIM0TLigF07vIonRjX7bA8eHCkWvHxNZpXu1xZ-zrPfw&oe=69681DF1" class="logo">
+    <h1>VuTien Art Club</h1>
+    <p>Cầm cọ lên, cùng nhau vẽ nên thế giới đầy màu sắc tại VuTien Art Club</p>
+    <button onclick="goTo('ban')">Đăng ký ngay</button>
+  </section>
+
+  <!-- CHỌN BAN -->
+  <section id="ban" class="page">
+    <h2>Chọn ban của bạn</h2>
+
+    <div class="cards">
+      <div class="card" onclick="selectBan('Ban Chuyên môn')">
+ <!--       <img src="images/chuyenmon.svg" alt="Ban Chuyên Môn" class="ban-illu">   -->
+        <h3>Ban Chuyên môn</h3>
+        <p style="text-align: left;">* Sáng tạo nghệ thuật, thiết kế, vẽ tranh và thỏa sức sáng tạo vs đam mê hội họa của mình.</p>
+      </div>
+
+      <div class="card" onclick="selectBan('Ban Kỹ thuật')">
+ <!--       <img src="images/kythuat.svg" alt="Ban Kỹ thuật" class="ban-illu"> -->
+        <h3>Ban Kỹ thuật</h3>
+        <p style="text-align: left;">* Chụp ảnh, chỉnh ảnh.</p>
+        <p style="text-align: left;">* Thiết kế ấn phẩm.</p>
+        <p style="text-align: left;">* Chỉnh sửa, cắt ghép ảnh/video.</p>
+      </div>
+
+      <div class="card" onclick="selectBan('Ban Nội dung')">
+        <h3>Ban Nội dung</h3>
+        <p style="text-align: left;">* Viết caption.</p>
+        <p style="text-align: left;">* Viết các bài thông báo.</p>
+        <p style="text-align: left;">* Lên ý tưởng các bài viết.</p>
+      </div>
+
+      <div class="card" onclick="selectBan('Ban Quản lý')">
+        <h3>Ban Quản lý</h3>
+        <p style="text-align: left;">* Lên kế hoạch, sắp xếp công việc.</p>
+        <p style="text-align: left;">* Lên timeline, kết hoạch.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section id="form" class="page">
+    <h2 id="banTitle"></h2>
+
+    <label>Họ và tên <span class="required">*</span></label>
+    <input id="name" placeholder="Nguyễn Văn A">
+
+    <label>Lớp <span class="required">*</span></label>
+    <input id="class" placeholder="10A1">
+
+    <label>Số điện thoại</label>
+    <input id="phone" placeholder="0123456789" inputmode="numeric">
+
+    <label>Link Facebook <span class="required">*</span></label>
+    <input
+      id="fb"
+      placeholder="facebook.com/VuTienArtClub"
+    >
+
+    <label>Lý do bạn muốn tham gia CLB</label>
+    <textarea id="reason" placeholder="Hãy viết vài dòng về mong muốn, đam mê hoặc kỳ vọng của bạn..."></textarea>
+
+    <p class="note">
+      Các mục có dấu <span class="required">*</span> là bắt buộc
+    </p>
+
+    <div class="form-buttons">
+      <button class="secondary" onclick="goTo('ban')">Quay lại</button>
+      <button type="button" onclick="submitForm()">Gửi đăng ký</button>
+    </div>
+  </section>
+
+
+  <!-- THANK YOU -->
+  <section id="thanks" class="page">
+    <h2>Cảm ơn bạn 🌿</h2>
+    <p>Đơn đăng ký đã được gửi thành công.</p>
+
+    <button onclick="goTo('home')">Về trang chủ</button>
+  </section>
+
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
