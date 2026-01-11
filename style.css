@@ -35,7 +35,16 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: blur(15px);   /* làm mờ trực tiếp video */
+  z-index: -2; /* nằm sau overlay */
+}
+
+/* Overlay trong suốt để tạo hiệu ứng blur */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.2); /* lớp mờ nhẹ */
+  backdrop-filter: blur(15px); /* hiệu ứng mờ nền video */
+  -webkit-backdrop-filter: blur(15px); /* hỗ trợ Safari */
   z-index: -1;
 }
 
