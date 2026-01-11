@@ -10,6 +10,8 @@ body {
   height: 100vh;
 }
 
+
+
 #app {
   display: flex;
   align-items: center;
@@ -22,6 +24,33 @@ body {
   text-align: center;
   animation: fade 0.6s ease;
 }
+
+
+
+/* Video nền phủ toàn trang */
+/* Video nền phủ toàn trang */
+.bg-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(15px);   /* làm mờ trực tiếp video */
+  z-index: -1;
+}
+
+
+
+.club-logo {
+  width: 150px;          /* tăng kích thước (có thể chỉnh lớn hơn) */
+  height: 150px;         /* giữ tỉ lệ vuông để bo tròn */
+  border-radius: 50%;    /* bo tròn thành hình tròn */
+  border: 2px solid #fff;/* viền trắng */
+  object-fit: cover;     /* đảm bảo hình không méo */
+  display: block;
+  margin: 0 auto;        /* căn giữa nếu cần */
+}
+
 
 .page.active {
   display: block;
@@ -150,7 +179,7 @@ label {
 
 .note {
   font-size: 13px;
-  color: #bbb;
+  color: #ffffff;
   margin-top: 6px;
 }
 
@@ -284,7 +313,6 @@ button.secondary {
   border-radius: 23px;
   border: none;
   font-size: 15px;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
   color: #111;
   outline: none;
   transition: all 0.3s ease;
@@ -316,6 +344,47 @@ button.secondary {
 
 
 
+/* Gradient cho từng ô */
+.name-field input {
+  background: linear-gradient(to bottom, #00c3ff, #3ce8ff);
+}
+.name-field input:focus {
+  background: linear-gradient(to bottom, #00c3ff, #3ce8ff);
+}
+
+.class-field input {
+  background: linear-gradient(to bottom, #3ce8ff, #6decfd);
+}
+.class-field input:focus {
+  background: linear-gradient(to bottom, #3ce8ff, #6decfd);
+}
+
+.phone-field input {
+  background: linear-gradient(to bottom, #6decfd, #98f3ff);
+}
+.phone-field input:focus {
+  background: linear-gradient(to bottom, #6decfd, #98f3ff);
+}
+
+.fb-field input {
+  background: linear-gradient(to bottom, #98f3ff, #c3f8ff);
+}
+.fb-field input:focus {
+  background: linear-gradient(to bottom, #98f3ff, #c3f8ff);
+}
+
+.reason-field textarea {
+  background: linear-gradient(to bottom, #c3f8ff, #acf5ff);
+}
+.reason-field textarea:focus {
+  background: linear-gradient(to bottom, #c3f8ff, #acf5ff);
+}
+
+/* Zoom khi focus */
+
+
+
+
 .form-group input:focus,
 .form-group textarea:focus {
   transform: scale(1.05);   /* phóng to nhẹ khi focus */
@@ -329,7 +398,7 @@ button.secondary {
   width: 100%;
   min-height: 120px;
   padding: 14px 18px;
-  border-radius: 16px;
+  border-radius: 23px;
   border: none;
   resize: vertical;
   font-size: 15px;
@@ -337,7 +406,7 @@ button.secondary {
   color: #111;
   outline: none;
   transition: all 0.3s ease; /* thêm để zoom mượt */
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  background: linear-gradient(to bottom, #acf5ff, #ffffff);
 }
 
 
