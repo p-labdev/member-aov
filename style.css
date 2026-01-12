@@ -82,7 +82,7 @@ button {
   font-size: 16px;
   cursor: pointer;
 }
-
+/*
 input {
   display: block;
   width: 260px;
@@ -95,7 +95,7 @@ input {
   color: #111;
   text-align: left;
 }
-
+*/
 @keyframes fade {
   from {
     opacity: 0;
@@ -143,7 +143,8 @@ input {
     padding: 14px;
     font-size: 16px;
   }
-
+}
+/*
   .cards {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -154,7 +155,9 @@ input {
     padding: 18px;
     border-radius: 24px;
   }
+}
 
+/*
   input {
     width: 90%;
     max-width: 320px;
@@ -166,7 +169,7 @@ input {
     padding: 20px 8px;
   }
 }
-
+*/
 /* ===== Touch feedback (mobile feel) ===== */
 button:active {
   transform: scale(0.95);
@@ -191,7 +194,7 @@ label {
   color: #ffffff;
   margin-top: 6px;
 }
-
+/*
 textarea {
   width: 320px;
   min-height: 120px;
@@ -203,7 +206,7 @@ textarea {
   text-align: left;
 }
 
-
+*/
 
 
 
@@ -247,9 +250,25 @@ button.secondary {
 }
 
 .intro-logo {
-  width: 90px;
-  margin-bottom: 20px;
+  width: 150px;
+  height: auto;          /* tăng kích thước (có thể chỉnh lớn hơn) */       /* giữ tỉ lệ vuông để bo tròn */
+  border-radius: 50%;    /* bo tròn thành hình tròn */
+  border: 2px solid #fff;/* viền trắng */
+  object-fit: cover;     /* đảm bảo hình không méo */
+  display: block;
+  margin: 0 auto; 
   animation: introFloat 3s ease-in-out infinite;
+
+
+/*  width: 150px;       
+  height: 150px;        
+  border-radius: 50%;    
+  border: 2px solid;
+  border-image: linear-gradient(135deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb) 1;
+  object-fit: cover;    
+  display: block;
+  margin: 0 auto;  
+  animation: introFloat 3s ease-in-out infinite;*/
 }
 
 #intro h1 {
@@ -315,7 +334,7 @@ button.secondary {
   width: 90%;
   max-width: 320px;
 }
-
+/*
 .form-group input {
   width: 100%;
   padding: 14px 18px;
@@ -328,12 +347,32 @@ button.secondary {
 }
 
 /* Label mặc định nằm trong ô */
+
+.form-group input {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 23px;
+  border: none;
+  font-size: 15px;
+  color: #fff; /* chữ trắng để nổi trên nền */
+  outline: none;
+  transition: all 0.3s ease;
+
+  /* nền trong suốt mờ */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  /* viền sáng nhẹ */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
 .form-group label {
   position: absolute;
   left: 18px;
   top: 5px;
   font-size: 15px;
-  color: #333;
+  color: #ffffff;
   pointer-events: none;
   transition: all 0.3s ease;
   padding: 0 4px;
@@ -347,13 +386,13 @@ button.secondary {
   top: -8px;
   left: 14px;
   font-size: 12px;
-  color: #333;
+  color: #ffffff;
 }
 
 
 
 
-/* Gradient cho từng ô */
+/*
 .name-field input {
   background: linear-gradient(to bottom, #00c3ff, #3ce8ff);
 }
@@ -388,21 +427,20 @@ button.secondary {
 .reason-field textarea:focus {
   background: linear-gradient(to bottom, #c3f8ff, #acf5ff);
 }
-
-/* Zoom khi focus */
+ */
 
 
 
 
 .form-group input:focus,
 .form-group textarea:focus {
-  transform: scale(1.05);   /* phóng to nhẹ khi focus */
-  border: 2px solid #ff9a9e; /* viền nổi bật */
+  transform: scale(1.05);   
+  border: 2px solid #ffffff; 
 }
 
 
 
-
+/*
 .form-group textarea {
   width: 100%;
   min-height: 120px;
@@ -414,8 +452,28 @@ button.secondary {
   background: white;
   color: #111;
   outline: none;
-  transition: all 0.3s ease; /* thêm để zoom mượt */
+  transition: all 0.3s ease;
   background: linear-gradient(to bottom, #acf5ff, #ffffff);
+}
+*/
+
+.form-group textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 14px 18px;
+  border-radius: 23px;
+  border: none;
+  resize: vertical;
+  font-size: 15px;
+  color: #fff;
+  outline: none;
+  transition: all 0.3s ease;
+
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 
@@ -424,11 +482,18 @@ button.secondary {
   top : -8px;
   left: 14px;
   font-size: 12px;
-  color:#333;
+  color:#ffffff;
 }
 /* Khi focus vào textarea */
 .form-group textarea:focus {
   transform: scale(1.05);   /* zoom mượt */
-  border: 2px solid #ff9a9e;
+  border: 2px solid #ffffff;
   font-size: 16px;          /* chữ phóng to nhẹ cùng ô */
+}
+
+
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255,255,255,0.7);
 }
