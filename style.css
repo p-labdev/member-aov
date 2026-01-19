@@ -37,6 +37,18 @@
 }
 
 
+
+
+.expired-text {
+  display: none;
+  margin-top: 16px;
+  font-size: 1.1rem;
+  color: #ff0000;
+  font-weight: 600;
+}
+
+
+
 /*COUNTDOWN*/
 
 .countdown {
@@ -149,27 +161,18 @@ body {
   animation: fade 0.6s ease;
 }
 
-
-
-/* Video nền phủ toàn trang */
-/* Video nền phủ toàn trang */
-.bg-video {
+/* Background image full screen */
+.bg-image {
   position: fixed;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  z-index: -2; /* nằm sau overlay */
-}
+  background-image: url("background.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%; /* CO GIÃN ĐỂ XEM HẾT ẢNH */
+  z-index: -2;
 
-/* Overlay trong suốt để tạo hiệu ứng blur */
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.2); /* lớp mờ nhẹ */
-  backdrop-filter: blur(15px); /* hiệu ứng mờ nền video */
-  -webkit-backdrop-filter: blur(15px); /* hỗ trợ Safari */
-  z-index: -1;
 }
 
 
@@ -443,4 +446,37 @@ button.secondary {
 .form-group input::placeholder,
 .form-group textarea::placeholder {
   color: rgba(255,255,255,0.7);
+}
+
+
+
+/* ===========================
+   MOBILE SCALE FIX (GIỮ TỈ LỆ)
+   =========================== */
+
+/* ===========================
+   MOBILE SCALE + CENTER FIX
+   =========================== */
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  #app {
+    transform: scale(0.85) translateY(6vh);
+    transform-origin: top center;
+  }
+}
+
+@media (max-width: 420px) {
+  #app {
+    transform: scale(0.75) translateY(8vh);
+  }
+}
+
+@media (max-width: 360px) {
+  #app {
+    transform: scale(0.7) translateY(10vh);
+  }
 }
