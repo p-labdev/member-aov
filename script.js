@@ -6,6 +6,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const btn = home.querySelector("button");
   const endsIn = home.querySelector(".countdown-title");
 
+  // Tạo phần tử hiển thị "Đăng ký đã hết hạn" nếu chưa có
+  let expiredText = home.querySelector(".expired-text");
+  if (!expiredText) {
+    expiredText = document.createElement("div");
+    expiredText.className = "expired-text";
+    expiredText.textContent = "Đăng ký đã hết hạn";
+    expiredText.style.display = "none";
+    expiredText.style.color = "#ff6b6b";
+    expiredText.style.fontWeight = "600";
+    expiredText.style.marginTop = "12px";
+    home.appendChild(expiredText);
+  }
+
   // ==== Countdown bay lên + button hiện sau ====
   setTimeout(() => {
     countdown.classList.add("move-up"); // countdown di chuyển lên
@@ -21,13 +34,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const elMinutes = home.querySelector(".minutes");
   const elSeconds = home.querySelector(".seconds");
 
-  const targetDate = new Date("2026-03-01T00:00:00Z");
+
+  const targetDate = new Date(Date.UTC(2026, 1, 16, 17, 0, 0));
+ // UTC = VN-7
 
   function updateCountdown() {
     const now = new Date();
     let diff = targetDate - now;
 
-    if (diff <= 0) diff = 0;
+    if (diff <= 0) {
+      diff = 0;
+
+      // Ẩn nút đăng ký
+      if (btn) btn.style.display = "none";
+
+      // Hiện chữ "Đăng ký đã hết hạn"
+      if (expiredText) expiredText.style.display = "block";
+    }
 
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -40,8 +63,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (elSeconds) elSeconds.textContent = String(seconds).padStart(2, "0");
   }
 
+  // ===== Chạy countdown mỗi giây =====
   updateCountdown();
-  setInterval(updateCountdown, 1000);
+  const timer = setInterval(() => {
+    updateCountdown();
+    if (targetDate - new Date() <= 0) clearInterval(timer);
+  }, 1000);
 
 });
 
