@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const elSeconds = home.querySelector(".seconds");
 
 
-  const targetDate = new Date(Date.UTC(2026, 1, 16, 17, 0, 0));
+  const targetDate = new Date(Date.UTC(2026, 1, 11, 17, 0, 0));
  // UTC = VN-7
 
   function updateCountdown() {
