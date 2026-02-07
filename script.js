@@ -6,6 +6,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const btn = home.querySelector("button");
   const endsIn = home.querySelector(".countdown-title");
 
+  // Tự cuộn khi focus input / textarea (mobile friendly)
+ // Tự cuộn khi focus input / textarea (mobile friendly)
+  const inputs = document.querySelectorAll('input, textarea');
+  
+  inputs.forEach(el => {
+    el.addEventListener('focus', () => {
+      setTimeout(() => {
+        el.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }, 300); // đợi bàn phím hiện xong
+    });
+  });
+
+
   // Tạo phần tử hiển thị "Đăng ký đã hết hạn" nếu chưa có
   let expiredText = home.querySelector(".expired-text");
   if (!expiredText) {
