@@ -49,6 +49,12 @@
   font-weight: 600;
 }
 
+#form {
+  max-height: 100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 120px; /* chừa chỗ cho bàn phím */
+}
 
 
 /*COUNTDOWN*/
@@ -455,12 +461,6 @@ button.secondary {
 /* ===========================
    MOBILE SCALE FIX (GIỮ TỈ LỆ)
    =========================== */
-#form {
-  max-height: 100vh;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 120px; /* chừa chỗ cho bàn phím */
-}
 
 /* ===========================
    MOBILE SCALE + CENTER FIX
@@ -470,7 +470,7 @@ button.secondary {
 
   /* Đẩy nội dung ra giữa dễ nhìn hơn */
   #home {
-    padding-top: 40px;
+    margin-top: -80px;
     padding-bottom: 40px;
   }
 
