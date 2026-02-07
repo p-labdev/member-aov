@@ -455,6 +455,12 @@ button.secondary {
 /* ===========================
    MOBILE SCALE FIX (GIỮ TỈ LỆ)
    =========================== */
+#form {
+  max-height: 100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 120px; /* chừa chỗ cho bàn phím */
+}
 
 /* ===========================
    MOBILE SCALE + CENTER FIX
