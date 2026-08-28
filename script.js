@@ -7,8 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const endsIn = home.querySelector(".countdown-title");
 
   // Tự cuộn khi focus input / textarea (mobile friendly)
- // Tự cuộn khi focus input / textarea (mobile friendly)
-  const inputs = document.querySelectorAll('input, textarea');
+  const inputs = document.querySelectorAll('input, textarea, select');
   
   inputs.forEach(el => {
     el.addEventListener('focus', () => {
@@ -20,7 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 300); // đợi bàn phím hiện xong
     });
   });
-
 
   // Tạo phần tử hiển thị "Đăng ký đã hết hạn" nếu chưa có
   let expiredText = home.querySelector(".expired-text");
@@ -41,8 +39,14 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       btn.classList.add("show-btn"); // button xuất hiện đúng chỗ
       endsIn.classList.add("show");   // chữ "Ends in:" hiện
+      
     }, 150);
   }, 3500);
+  
+  // Đã sửa 450 thành 4500 ở đây!
+  setTimeout(() => {
+    home.classList.add("has-loaded"); 
+  }, 4500); 
 
   // ===== COUNTDOWN LOGIC =====
   const elDays = home.querySelector(".days");
@@ -50,9 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const elMinutes = home.querySelector(".minutes");
   const elSeconds = home.querySelector(".seconds");
 
-
-  const targetDate = new Date(Date.UTC(2026, 10, 23, 17, 0, 0));
- // UTC = VN-7
+  const targetDate = new Date(Date.UTC(2026, 10, 23, 17, 0, 0)); // UTC = VN-7
 
   function updateCountdown() {
     const now = new Date();
@@ -89,20 +91,40 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ===== PAGE NAV =====
-function goTo(id) {
-  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-}
+// ===== PAGE NAV =====
+function goTo(id, btn = null) {
+  // Thêm hiệu ứng chớp màu nút nhưng KHÔNG bắt trang web phải đợi
+  if (btn) {
+    btn.classList.add('is-clicking');
+    setTimeout(() => btn.classList.remove('is-clicking'), 400); 
+  }
 
+  // Ẩn tất cả các trang và xóa sạch các class hiệu ứng cũ
+  document.querySelectorAll(".page").forEach(p => {
+    p.classList.remove("active", "slide-in-right", "slide-in-left");
+  });
+
+  // Xác định trang đích và cho hiển thị
+  const targetPage = document.getElementById(id);
+  targetPage.classList.add("active");
+
+  // Logic chia 2 ngả: Về trang chủ thì trượt từ trái, đi trang khác thì trượt từ phải
+  if (id === "home") {
+    targetPage.classList.add("slide-in-left");
+  } else {
+    targetPage.classList.add("slide-in-right");
+  }
+}
 // ===== SUBMIT FORM =====
-function submitForm() {
+function submitForm(btn) {
   const name = document.getElementById("name").value.trim();
   const className = document.getElementById("class").value.trim();
   const phone = document.getElementById("phone").value.trim();
   const fb = document.getElementById("fb").value.trim();
   const reason = document.getElementById("reason").value.trim();
+  const major = document.getElementById("major").value;
 
-  if (!name || !className || !fb) {
+  if (!name || !className || !fb || !major) {
     alert("Vui lòng điền đầy đủ các mục bắt buộc (*)");
     return;
   }
@@ -113,15 +135,17 @@ function submitForm() {
     return;
   }
 
+  // Khai báo cục data chuẩn xác với các key trong Google Apps Script
   const data = {
-    name,
-    class: className,
-    phone,
-    facebook: fb.startsWith("http") ? fb : "https://" + fb,
-    reason
+    name: name,
+    classname: className, // Đã đổi class thành classname
+    phone: phone,
+    fb: fb.startsWith("http") ? fb : "https://" + fb, // Đã đổi facebook thành fb
+    major: major,
+    reason: reason
   };
 
-  fetch("https://script.google.com/macros/s/AKfycbzI7KKD_HKGLf3QXLg6DsrReBzyfYBZ1DK_NWyHyPDacryRwj5P3Jk5Vc7yGd6wYPct/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbzoosnY9Aa4O0zNrw6qm3ZjhYfQGH7eAeqFCmODOMEsH_4E4Y6hTw7VdsgWSVigQ9oF2Q/exec", {
     method: "POST",
     mode: "no-cors",
     headers: {
@@ -130,5 +154,6 @@ function submitForm() {
     body: JSON.stringify(data)
   });
 
-  goTo("thanks");
+  // Gọi trực tiếp hàm goTo (nó sẽ tự xử lý hiệu ứng chớp màu và delay 400ms rồi chuyển trang)
+  goTo("thanks", btn);
 }
