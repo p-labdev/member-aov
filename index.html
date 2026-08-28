@@ -18,7 +18,7 @@
   <!-- HOME -->
   <section id="home" class="page active">
     <img 
-      src="logo.jpg"
+      src="logo-vta.jpg"
       class="club-logo"
       alt="Logo"
     >
@@ -45,7 +45,7 @@
 
   <!-- FORM -->
   <section id="form" class="page">
-    <h2>Đăng ký tham gia VuTien Art Club</h2>
+    <h2>Đơn Đăng ký</h2>
 
     <div class="form-group name-field">
       <input type="text" id="name" placeholder=" "  required>
@@ -65,6 +65,19 @@
     <div class="form-group fb-field">
       <input type="url" id="fb" placeholder=" " required>
       <label for="fb">Link TCN Facebook *</label>
+    </div>
+
+    <div class="form-group major-field">
+      <!-- Dùng thẻ select thay vì input, thêm required để bắt buộc chọn -->
+      <select id="major" required>
+        <!-- Option đầu tiên để trống, ẩn đi để làm mẹo cho nhãn (label) hoạt động -->
+        <option value="" disabled selected hidden></option>
+        <option value="Mục 1">Ban Chuyên môn</option>
+        <option value="Mục 2">Ban Quản lý</option>
+        <option value="Mục 3">Ban Truyền thông</option>
+        <option value="Mục 4">Ban Kỹ thuật</option>
+      </select>
+      <label for="major">Phân ban *</label>
     </div>
 
     <div class="form-group reason-field">
