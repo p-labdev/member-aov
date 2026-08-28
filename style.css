@@ -14,11 +14,19 @@
 }
 
 #home button {
+  /* Set màu gradient và kéo giãn ra 200% để có không gian chạy */
+  background: linear-gradient(270deg, #ec73fc, #bce9fd, #ec73fc);
+  background-size: 200% 200%;
+  
+  /* Gọi animation loang màu chạy liên tục vô hạn (infinite), mỗi vòng mất 3 giây */
+  animation: gradientMove 3s ease infinite;
+  
+  /* Giữ nguyên các thuộc tính cũ của bạn để không hỏng hiệu ứng bay lên lúc đầu */
   opacity: 0;
-  transition: 0.6s ease, transform 0.6s ease;
   transform: translateY(20px);
+  /* Tách riêng transition cho opacity và transform để không bị đá nhau với background */
+  transition: opacity 0.6s ease, transform 0.6s ease; 
 }
-
 #home button.show-btn { 
   opacity: 1; 
   transform: translateY(-70px);
@@ -51,9 +59,12 @@
 
 #form {
   max-height: 100vh;
-  overflow-y: auto;
+  overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 120px; /* chừa chỗ cho bàn phím */
+  padding-bottom: 20px; /* chừa chỗ cho bàn phím */
+  max-width: 100vw;
+  margin-top: -20vh;
+  width:100%;
 }
 
 
@@ -152,6 +163,8 @@ body {
   background: radial-gradient(circle at top, #1a1a1a, #000);
   color: white;
   height: 100vh;
+  /* Thêm dòng này: */
+  overflow-x: hidden; 
 }
 
 
@@ -166,7 +179,6 @@ body {
 .page {
   display: none;
   text-align: center;
-  animation: fade 0.6s ease;
 }
 
 /* Background image full screen */
@@ -212,6 +224,38 @@ body {
   display: block;
 }
 
+.page.active.slide-in-right {
+  animation: slideFromRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Class trượt từ trái sang phải (Về trang chủ) */
+.page.active.slide-in-left {
+  animation: slideFromLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Thêm keyframes trượt từ trái sang */
+@keyframes slideFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
 .logo {
   width: 140px;
   opacity: 0.9;
@@ -225,9 +269,37 @@ button {
   padding: 14px 28px;
   border-radius: 30px;
   border: none;
-  background: linear-gradient(135deg, #ec73fc, #bce9fd);
+  /* Thêm một màu lặp lại ở cuối để tạo vòng lặp loang màu mượt */
+  background: linear-gradient(135deg, #ec73fc, #bce9fd, #ec73fc);
+  /* Kéo giãn background ra gấp đôi */
+  background-size: 200% auto;
   font-size: 16px;
   cursor: pointer;
+  /* Thêm transition cho background-position với độ trễ/mượt 0.5s */
+  transition: background-position 0.5s ease-in-out, transform 0.2s ease;
+}
+
+/* Khi trỏ chuột (PC) hoặc nhấn giữ (Mobile) */
+button:hover,
+button:active {
+  background-position: right center;
+}
+
+button.is-clicking {
+  background-position: right center !important;
+  transform: scale(0.95) !important;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes fade {
@@ -269,13 +341,6 @@ button {
   .logo {
     width: 110px;
     margin-bottom: 12px;
-  }
-
-  button {
-    width: 90%;
-    max-width: 320px;
-    padding: 14px;
-    font-size: 16px;
   }
 }
 
@@ -358,30 +423,45 @@ button.secondary {
 
 
 .form-group {
+  max-width:100%;
   position: relative;
-  margin: 20px auto;
-  width: 90%;
-  max-width: 320px;
+  margin: 22px auto;
+  width: 85%;
+  max-width: 400px;
 }
 
-.form-group input {
+.form-group input,
+.form-group select {
   width: 100%;
-  padding: 14px 18px;
+  padding: 17px 18px;
   border-radius: 23px;
   border: none;
   font-size: 15px;
-  color: #fff; /* chữ trắng để nổi trên nền */
+  color: #fff;
   outline: none;
   transition: all 0.3s ease;
-
-  /* nền trong suốt mờ */
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-
-  /* viền sáng nhẹ */
   border: 1px solid rgba(255, 255, 255, 0.3);
+  /* Xóa mũi tên mặc định xấu xí của trình duyệt (tùy chọn) */
+  appearance: none; 
+  -webkit-appearance: none;
 }
+
+.form-group select option {
+  background-color: #1a1a1a; 
+  color: #fff;
+}
+
+.form-group select:focus + label,
+.form-group select:valid + label {
+  top: -8px;
+  left: 14px;
+  font-size: 12px;
+  color: #ffffff;
+}
+
 
 .form-group label {
   position: absolute;
@@ -418,7 +498,7 @@ button.secondary {
 .form-group textarea {
   width: 100%;
   min-height: 120px;
-  padding: 14px 18px;
+  padding: 16px 18px;
   border-radius: 23px;
   border: none;
   resize: vertical;
@@ -456,16 +536,6 @@ button.secondary {
   color: rgba(255,255,255,0.7);
 }
 
-
-
-/* ===========================
-   MOBILE SCALE FIX (GIỮ TỈ LỆ)
-   =========================== */
-
-/* ===========================
-   MOBILE SCALE + CENTER FIX
-   =========================== */
-
 @media (max-width: 768px) {
 
   /* Đẩy nội dung ra giữa dễ nhìn hơn */
@@ -473,98 +543,67 @@ button.secondary {
     margin-top: -80px;
     padding-bottom: 40px;
   }
-
-  /* Logo to hơn */
   .club-logo {
     width: 180px;
     height: 180px;
     margin-bottom: 20px;
   }
-
-  /* Tiêu đề */
   #home h1 {
     font-size: 2.6em;
     margin-bottom: 12px;
   }
-
-  /* Đoạn mô tả */
   #home p {
     font-size: 1.05em;
     line-height: 1.5;
     margin-bottom: 14px;
   }
-/* ===== HOME SPACING TWEAK ===== */
   #home .countdown-title {
     margin-top: 36px;
     margin-bottom: 22px;
   }
-
   #home .countdown {
     margin-bottom: 48px;
     margin-top: 40px;
   }
-
-
   #home button.show-btn {
     transform: translateY(-100px); /* thay vì -70px */
   }
-
   #home button {
     margin-top: 30px;
   }
-  /* Countdown */
   .countdown {
     gap: 14px;
     margin-top: 24px;
   }
-
   .time-box {
     width: 90px;
     height: 90px;
   }
-
   .time-box .number {
     font-size: 1.6em;
   }
-
   .time-box .label {
     font-size: 0.75em;
   }
-
-  /* Nút đăng ký */
   #home button {
     font-size: 17px;
     padding: 16px;
     margin-top: 40px;
   }
-
-  /* Tiêu đề form */
   #form h2 {
     font-size: 1.9em;
     line-height: 1.3;
     margin-bottom: 20px;
   }
-
-  /* Khung form rộng hơn */
-  .form-group {
-    max-width: 360px;
-    margin: 22px auto;
-  }
-
-  /* Input & textarea to hơn, dễ chạm */
   .form-group input,
   .form-group textarea {
     padding: 16px 20px;
     font-size: 16px;
     border-radius: 26px;
   }
-
-  /* Label rõ hơn */
   .form-group label {
     font-size: 15px;
   }
-
-  /* Khi label bay lên */
   .form-group input:focus + label,
   .form-group input:not(:placeholder-shown) + label,
   .form-group textarea:focus + label,
@@ -609,4 +648,24 @@ button.secondary {
   #app {
     transform: scale(0.7) translateY(10vh);
   }
+}
+
+
+/* --- GIỮ TRẠNG THÁI CUỐI CÙNG KHI QUAY LẠI TRANG CHỦ --- */
+
+/* 1. Ép vị trí cuối cùng cho Logo, Tiêu đề, Ô thời gian (Không dùng animation nữa) */
+/* --- CHỈ CỐ ĐỊNH KHI QUAY LẠI TRANG CHỦ --- */
+#home.has-loaded .club-logo,
+#home.has-loaded h1,
+#home.has-loaded p:first-of-type,
+#home.has-loaded .time-box {
+  animation: none !important; /* Tắt hiệu ứng bay lên */
+  opacity: 1 !important;
+  transform: translateY(0) !important; /* Đưa về đúng vị trí gốc */
+}
+
+/* Đưa cụm đếm ngược về vị trí đã đẩy lên (-40px) */
+#home.has-loaded .countdown.move-up {
+  animation: none !important;
+  transform: translateY(-40px) !important;
 }
