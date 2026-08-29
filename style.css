@@ -1,3 +1,18 @@
+/*                                                                                                                     
+                                                                                                _                      
+                                                                                               / /                     
+           _____     _     _       ___       _     _     ______         _____     _    _    _     _     _____          
+          /  __ \   | |   | |     / _ \     | \   | |   /  ___ \       |  __  \  | |  | |  | |   | |   /  __ \         
+         |  /  \ |  | |   | |    / / \ \    |  \  | |  |  /   \_|      | |  | |  | |  | |  | |   | |  |  /  \_\        
+         | |   | |  | |   | |   / /   \ \   |   \ | |  | |             | |__| |  | |__| |  | |   | |  | |              
+         | | __| |  | |   | |  | |_____| |  | |\ \| |  | |  ____       |  ___ /  |  __  |  | |   | |  | |              
+         | | \ \ |  | |   | |  |  _____  |  | | \   |  | | |__  |      | |       | |  | |  | |   | |  | |    __        
+         | \__\  |  | \___/ |  | |     | |  | |  \  |  |  \_/   |      | |       | |  | |  | \___/ |  |  \__/ /        
+          \____  \   \_____/   |_|     |_|  |_|   \_|   \____/|_|      |_|       | |  |_|   \_____/    \_____/         
+                \_\                                                                                                    */
+
+
+
 * {
   box-sizing: border-box;
   font-family: 'Segoe UI', sans-serif;
@@ -10,21 +25,17 @@
   opacity: 0;
   transform: translateY(20px);
   animation: textFade 1s ease forwards;
-  animation-delay: 1.2s; /* chạy sau logo */
+  animation-delay: 1.2s; 
 }
 
 #home button {
-  /* Set màu gradient và kéo giãn ra 200% để có không gian chạy */
   background: linear-gradient(270deg, #ec73fc, #bce9fd, #ec73fc);
   background-size: 200% 200%;
   
-  /* Gọi animation loang màu chạy liên tục vô hạn (infinite), mỗi vòng mất 3 giây */
   animation: gradientMove 3s ease infinite;
   
-  /* Giữ nguyên các thuộc tính cũ của bạn để không hỏng hiệu ứng bay lên lúc đầu */
   opacity: 0;
   transform: translateY(20px);
-  /* Tách riêng transition cho opacity và transform để không bị đá nhau với background */
   transition: opacity 0.6s ease, transform 0.6s ease; 
 }
 #home button.show-btn { 
@@ -61,7 +72,7 @@
   max-height: 100vh;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 20px; /* chừa chỗ cho bàn phím */
+  padding-bottom: 20px; 
   max-width: 100vw;
   margin-top: -20vh;
   width:100%;
@@ -140,9 +151,9 @@
   margin-top: 50px;
   margin-bottom: 1px;
   color: rgba(255,255,255,0.9);
-  opacity: 0; /* ẩn mặc định */
+  opacity: 0;
   transform: translateY(15px);
-  transition: opacity 0.3s ease; /* chỉ hiện khi JS thêm class */
+  transition: opacity 0.3s ease; 
 }
 
 .hidden { display: none; }
@@ -163,7 +174,7 @@ body {
   background: radial-gradient(circle at top, #1a1a1a, #000);
   color: white;
   height: 100vh;
-  /* Thêm dòng này: */
+
   overflow-x: hidden; 
 }
 
@@ -181,7 +192,6 @@ body {
   text-align: center;
 }
 
-/* Background image full screen */
 .bg-image {
   position: fixed;
   inset: 0;
@@ -190,7 +200,7 @@ body {
   background-image: url("background.jpg");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 100% 100%; /* CO GIÃN ĐỂ XEM HẾT ẢNH */
+  background-size: 100% 100%; 
   z-index: -2;
 
 }
@@ -198,13 +208,13 @@ body {
 
 
 .club-logo {
-  width: 150px;          /* tăng kích thước (có thể chỉnh lớn hơn) */
-  height: 150px;         /* giữ tỉ lệ vuông để bo tròn */
-  border-radius: 50%;    /* bo tròn thành hình tròn */
-  border: 2px solid #fff;/* viền trắng */
-  object-fit: cover;     /* đảm bảo hình không méo */
+  width: 150px;        
+  height: 150px;        
+  border-radius: 50%;   
+  border: 2px solid #fff;
+  object-fit: cover;   
   display: block;
-  margin: 0 auto;        /* căn giữa nếu cần */
+  margin: 0 auto;     
 
   opacity:0;
   transform: translateY(-200px) scale(0.5);
@@ -228,12 +238,10 @@ body {
   animation: slideFromRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Class trượt từ trái sang phải (Về trang chủ) */
 .page.active.slide-in-left {
   animation: slideFromLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Thêm keyframes trượt từ trái sang */
 @keyframes slideFromLeft {
   0% {
     opacity: 0;
@@ -269,17 +277,14 @@ button {
   padding: 14px 28px;
   border-radius: 30px;
   border: none;
-  /* Thêm một màu lặp lại ở cuối để tạo vòng lặp loang màu mượt */
   background: linear-gradient(135deg, #ec73fc, #bce9fd, #ec73fc);
-  /* Kéo giãn background ra gấp đôi */
   background-size: 200% auto;
   font-size: 16px;
   cursor: pointer;
-  /* Thêm transition cho background-position với độ trễ/mượt 0.5s */
   transition: background-position 0.5s ease-in-out, transform 0.2s ease;
 }
 
-/* Khi trỏ chuột (PC) hoặc nhấn giữ (Mobile) */
+
 button:hover,
 button:active {
   background-position: right center;
@@ -312,9 +317,8 @@ button.is-clicking {
     transform: translateY(0);
   }
 }
-/* ===========================
-   MOBILE OPTIMIZATION
-   =========================== */
+
+
 @media (max-width: 768px) {
 
   body {
@@ -444,7 +448,6 @@ button.secondary {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  /* Xóa mũi tên mặc định xấu xí của trình duyệt (tùy chọn) */
   appearance: none; 
   -webkit-appearance: none;
 }
@@ -476,7 +479,6 @@ button.secondary {
   background: transparent;
 }
 
-/* Khi focus hoặc có nội dung → label bay lên */
 .form-group input:focus + label,
 .form-group input:not(:placeholder-shown) + label {
   top: -8px;
@@ -484,8 +486,6 @@ button.secondary {
   font-size: 12px;
   color: #ffffff;
 }
-
-
 
 
 
@@ -522,11 +522,11 @@ button.secondary {
   font-size: 12px;
   color:#ffffff;
 }
-/* Khi focus vào textarea */
+
 .form-group textarea:focus {
-  transform: scale(1.05);   /* zoom mượt */
+  transform: scale(1.05);  
   border: 2px solid #ffffff;
-  font-size: 16px;          /* chữ phóng to nhẹ cùng ô */
+  font-size: 16px; 
 }
 
 
@@ -537,8 +537,6 @@ button.secondary {
 }
 
 @media (max-width: 768px) {
-
-  /* Đẩy nội dung ra giữa dễ nhìn hơn */
   #home {
     margin-top: -80px;
     padding-bottom: 40px;
@@ -566,7 +564,7 @@ button.secondary {
     margin-top: 40px;
   }
   #home button.show-btn {
-    transform: translateY(-100px); /* thay vì -70px */
+    transform: translateY(-100px);
   }
   #home button {
     margin-top: 30px;
@@ -611,26 +609,23 @@ button.secondary {
     font-size: 13px;
   }
 
-  /* Textarea cao hơn */
   .form-group textarea {
     min-height: 150px;
   }
 
-  /* Nút form */
   .form-buttons {
-    flex-direction: row;   /* quay về 1 dòng */
+    flex-direction: row;   
     justify-content: center;
     gap: 12px;
   }
 
   .form-buttons button {
-    width: auto;           /* không full width */
-    min-width: 140px;      /* đủ to để bấm */
+    width: auto;          
+    min-width: 140px;     
     padding: 14px 18px;
     font-size: 15px;
   }
 
-  /* Ghi chú */
   .note {
     font-size: 14px;
     margin-top: 10px;
@@ -651,20 +646,15 @@ button.secondary {
 }
 
 
-/* --- GIỮ TRẠNG THÁI CUỐI CÙNG KHI QUAY LẠI TRANG CHỦ --- */
-
-/* 1. Ép vị trí cuối cùng cho Logo, Tiêu đề, Ô thời gian (Không dùng animation nữa) */
-/* --- CHỈ CỐ ĐỊNH KHI QUAY LẠI TRANG CHỦ --- */
 #home.has-loaded .club-logo,
 #home.has-loaded h1,
 #home.has-loaded p:first-of-type,
 #home.has-loaded .time-box {
-  animation: none !important; /* Tắt hiệu ứng bay lên */
+  animation: none !important; 
   opacity: 1 !important;
-  transform: translateY(0) !important; /* Đưa về đúng vị trí gốc */
+  transform: translateY(0) !important; 
 }
 
-/* Đưa cụm đếm ngược về vị trí đã đẩy lên (-40px) */
 #home.has-loaded .countdown.move-up {
   animation: none !important;
   transform: translateY(-40px) !important;
