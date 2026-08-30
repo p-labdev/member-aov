@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const elMinutes = home.querySelector(".minutes");
   const elSeconds = home.querySelector(".seconds");
 
-  const targetDate = new Date(Date.UTC(2026, 10, 23, 17, 0, 0));
+  const targetDate = new Date(Date.UTC(2026, 8, 20, 17, 0, 0));
 
   function updateCountdown() {
     const now = new Date();
